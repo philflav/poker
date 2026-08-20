@@ -47,3 +47,446 @@ a {
     color-scheme: dark;
   }
 }
+
+/* ---- Poker table ---- */
+.page {
+  min-height: 100vh;
+  padding: 16px;
+  background: radial-gradient(circle at 50% 40%, #1f7a4d 0%, #0c3b27 70%, #062417 100%);
+  color: #f5f5f5;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #ffe9a8;
+  letter-spacing: 1px;
+}
+
+.table {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.25);
+  border: 8px solid #5a3a1a;
+  border-radius: 50% / 30%;
+  padding: 90px 40px;
+}
+
+.pot {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  color: #ffe9a8;
+}
+
+.community {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  min-height: 96px;
+  align-items: center;
+}
+
+.seats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.seat {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 12px;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+  border: 2px solid transparent;
+}
+
+.seat.active {
+  border-color: #ffd54a;
+  box-shadow: 0 0 16px rgba(255, 213, 74, 0.6);
+}
+
+.seat.folded {
+  opacity: 0.45;
+}
+
+.seat.dealer::after {
+  content: "D";
+  display: inline-block;
+  background: #fff;
+  color: #000;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 6px;
+}
+
+.seat .name {
+  font-weight: bold;
+}
+
+.seat .meta {
+  font-size: 13px;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.seat .action {
+  font-size: 13px;
+  color: #ffd54a;
+  min-height: 18px;
+  margin-top: 2px;
+}
+
+.hole {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin-top: 8px;
+  min-height: 70px;
+}
+
+/* ---- Cards ---- */
+.card {
+  width: 52px;
+  height: 72px;
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  position: relative;
+}
+
+.card.small {
+  width: 38px;
+  height: 54px;
+  font-size: 14px;
+}
+
+.card .rank {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  font-size: 14px;
+}
+
+.card .suit {
+  font-size: 28px;
+}
+
+.card.back {
+  background: repeating-linear-gradient(45deg, #2a4d8f, #2a4d8f 6px, #1b326b 6px, #1b326b 12px);
+  color: #fff;
+}
+
+.card.back .back-pattern {
+  font-size: 24px;
+  opacity: 0.6;
+}
+
+/* ---- Controls ---- */
+.controls {
+  max-width: 760px;
+  margin: 20px auto 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+button {
+  background: #ffe9a8;
+  color: #1a1a1a;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+button.primary {
+  background: #4caf50;
+  color: #fff;
+}
+
+.raise-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.raise-box input {
+  width: 80px;
+  padding: 6px;
+  border-radius: 6px;
+  border: none;
+}
+
+.message {
+  max-width: 760px;
+  margin: 16px auto 0;
+  text-align: center;
+  font-size: 17px;
+  color: #ffe9a8;
+  min-height: 24px;
+}
+
+.log {
+  max-width: 760px;
+  margin: 12px auto 0;
+  font-size: 12px;
+  opacity: 0.7;
+  max-height: 140px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+}
+
+.log li {
+  padding: 2px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ---- Difficulty selector ---- */
+.difficulty {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.difficulty button {
+  background: rgba(0, 0, 0, 0.35);
+  color: #f5f5f5;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.difficulty button.primary {
+  background: #ffe9a8;
+  color: #1a1a1a;
+}
+
+/* ---- Taunt speech bubble ---- */
+.taunt {
+  position: relative;
+  display: inline-block;
+  background: #ffe9a8;
+  color: #1a1a1a;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  max-width: 160px;
+  animation: pop 0.2s ease;
+}
+
+.taunt::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 20px;
+  border-width: 6px 6px 0;
+  border-style: solid;
+  border-color: #ffe9a8 transparent transparent transparent;
+}
+
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ---- Card deal animation ---- */
+.card {
+  animation: dealIn 0.28s ease;
+}
+
+@keyframes dealIn {
+  from { transform: translateY(-18px) rotate(-6deg); opacity: 0; }
+  to { transform: translateY(0) rotate(0); opacity: 1; }
+}
+
+/* ---- Top bar ---- */
+.topbar {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.topbar .group {
+  display: flex;
+  gap: 6px;
+}
+
+.topbar button {
+  font-size: 13px;
+  padding: 7px 12px;
+  background: rgba(0, 0, 0, 0.35);
+  color: #f5f5f5;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.topbar button.primary {
+  background: #ffe9a8;
+  color: #1a1a1a;
+}
+
+.meta-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  font-size: 13px;
+  opacity: 0.85;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.sidepots {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* ---- Bot strength meter + tells ---- */
+.strength {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  margin: 4px auto 2px;
+  width: 80%;
+  overflow: hidden;
+}
+
+.strength-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #ffd54a, #e23b3b);
+  transition: width 0.3s ease;
+}
+
+.thinking {
+  font-size: 12px;
+}
+
+.seat.winner {
+  box-shadow: 0 0 22px rgba(255, 213, 74, 0.8);
+  border-color: #ffd54a;
+}
+
+/* ---- Winning card highlight ---- */
+.card.winning {
+  outline: 3px solid #ffd54a;
+  box-shadow: 0 0 12px rgba(255, 213, 74, 0.7);
+}
+
+/* ---- Overlays (achievements / replay) ---- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.panel {
+  background: #0c3b27;
+  border: 2px solid #ffd54a;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 420px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  color: #f5f5f5;
+}
+
+.panel h2 {
+  margin-bottom: 12px;
+  color: #ffe9a8;
+}
+
+.ach {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0.6;
+}
+
+.ach.earned {
+  opacity: 1;
+}
+
+.ach-desc {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.replay-seat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.replay-seat .hole {
+  min-height: 0;
+  margin: 0;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 640px) {
+  .table {
+    padding: 70px 12px;
+    border-radius: 30% / 14%;
+  }
+  .seats {
+    gap: 8px;
+  }
+  .seat {
+    width: 140px;
+    padding: 6px;
+  }
+  .topbar {
+    gap: 8px;
+  }
+  .topbar button {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+  .card {
+    width: 44px;
+    height: 62px;
+  }
+}
+
